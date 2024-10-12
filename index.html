@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to Speech Converter with Translation</title>
+    <style>
+        /* Main body styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Comic Sans MS', sans-serif;
+            background-color: #FFF7E1;
+            overflow: hidden;
+        }
+
+        /* Flying hearts animation */
+        .heart {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: #FF69B4;
+            opacity: 0.7;
+            clip-path: polygon(50% 0%, 100% 35%, 80% 100%, 50% 75%, 20% 100%, 0% 35%);
+            animation: fly 10s linear infinite;
+        }
+
+        @keyframes fly {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Animating multiple hearts with different speeds and sizes */
+        .heart:nth-child(1) { left: 10%; animation-duration: 12s; width: 40px; height: 40px; }
+        .heart:nth-child(2) { left: 20%; animation-duration: 10s; width: 60px; height: 60px; }
+        .heart:nth-child(3) { left: 30%; animation-duration: 14s; width: 45px; height: 45px; }
+        .heart:nth-child(4) { left: 40%; animation-duration: 16s; width: 50px; height: 50px; }
+        .heart:nth-child(5) { left: 50%; animation-duration: 18s; width: 55px; height: 55px; }
+        .heart:nth-child(6) { left: 60%; animation-duration: 20s; width: 35px; height: 35px; }
+        .heart:nth-child(7) { left: 70%; animation-duration: 22s; width: 65px; height: 65px; }
+        .heart:nth-child(8) { left: 80%; animation-duration: 24s; width: 50px; height: 50px; }
+        .heart:nth-child(9) { left: 90%; animation-duration: 26s; width: 40px; height: 40px; }
+
+        /* Center the content and style the form */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+            z-index: 2;
+        }
+
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: calc(100% - 40px); /* Reduce width by 40px to allow 20px space on each side */
+            max-width: 500px; /* Optional: Limit the maximum width of the container */
+        }
+
+        h1 {
+            color: #FF69B4;
+            font-size: 2.5em;
+        }
+
+        label {
+            font-size: 1.2em;
+            color: #FF4500;
+        }
+
+        textarea {
+            width: calc(90% - 90px); /* Reduce width by 40px to allow 20px space on each side */
+            height: 150px;
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 1em;
+            border: 2px solid #FF69B4;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        select, button {
+            background-color: #FF69B4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        select {
+            margin: 10px;
+        }
+
+        button:hover {
+            background-color: #FF1493;
+        }
+
+        /* Align input and output language in one row */
+        .language-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+        }
+
+        .language-select {
+            flex: 1;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Flying hearts as background -->
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+
+    <div class="container">
+        <div class="form-container">
+            <h1>Text to Speech Converter</h1>
+            <form action="/convert" method="POST">
+                <label for="text">Enter text:</label><br><br>
+                <textarea id="text" name="text" rows="5"></textarea><br><br>
+
+                <!-- Align input and output language in a single row -->
+                <div class="language-row">
+                    <div class="language-select">
+                        <label for="input_lang">Input Language:</label><br>
+                        <select id="input_lang" name="input_lang">
+                            <option value="en">English</option>
+                            <option value="es">Spanish</option>
+                            <option value="fr">French</option>
+                            <option value="de">German</option>
+                            <option value="hi">Hindi</option>
+                            <option value="ta">Tamil</option>
+                            <!-- Add more language options as needed -->
+                        </select>
+                    </div>
+
+                    <div class="language-select">
+                        <label for="output_lang">Output Language:</label><br>
+                        <select id="output_lang" name="output_lang">
+                            <option value="en">English</option>
+                            <option value="es">Spanish</option>
+                            <option value="fr">French</option>
+                            <option value="de">German</option>
+                            <option value="hi">Hindi</option>
+                            <option value="ta">Tamil</option>
+                            <!-- Add more language options as needed -->
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit">Convert to Speech</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
